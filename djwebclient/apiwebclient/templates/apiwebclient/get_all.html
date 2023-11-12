@@ -1,0 +1,53 @@
+<!-- apiwebclient/templates/apiwebclient/get_all.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <a href="{% url 'index' %}">Powrót do głównego ekranu</a>
+    <title>Get All Guests</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Get All Guests</h1>
+    
+    {% if data %}
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Room Number</th>
+                <th>Guest Name</th>
+            </tr>
+            {% for guest in data.value %}
+                <tr>
+                    <td>{{ guest.id }}</td>
+                    <td>{{ guest.roomNumber }}</td>
+                    <td>{{ guest.guestName }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No data available.</p>
+    {% endif %}
+    
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+</body>
+</html>
